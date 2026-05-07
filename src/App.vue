@@ -19,7 +19,7 @@ import { RouterView } from 'vue-router'
 
     <footer class="footer">
       <div class="footer-shop">
-        More ways to book: Find a <a href="https://shaw.sg/" target="_blank" rel="noopener noreferrer">Shaw Theatre</a> or <a href="https://www.gv.com.sg/" target="_blank" rel="noopener noreferrer">Golden Village</a> near you.      </div>
+        More ways to watch: Find a <a href="https://carnivalcinemas.sg/#/" target="_blank" rel="noopener noreferrer">Carnival</a>, <a href="https://www.eaglewingscinematics.com.sg/" target="_blank" rel="noopener noreferrer">EagleWings</a>, or <a href="https://filmhouse.sg/#/" target="_blank" rel="noopener noreferrer">Filmhouse</a> cinema near you.      </div>
       <div class="footer-end">
         <div class="footer-legal">
           <div class="footer-legal-copyright">
@@ -28,8 +28,6 @@ import { RouterView } from 'vue-router'
           <ul class="footer-legal-links" role="list">
             <li role="listitem"><router-link to="/privacy">Privacy Policy</router-link></li>
             <li role="listitem"><router-link to="/terms">Terms of Use</router-link></li>
-            <li role="listitem"><a href="#">Legal</a></li>
-            <li role="listitem"><a href="#">Site Map</a></li>
           </ul>
         </div>
         <div class="footer-locale">
