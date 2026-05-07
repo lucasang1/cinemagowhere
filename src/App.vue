@@ -19,7 +19,7 @@ import { RouterView } from 'vue-router'
 
     <footer class="footer">
       <div class="footer-shop">
-        More ways to watch: Find a <a href="https://carnivalcinemas.sg/#/" target="_blank" rel="noopener noreferrer">Carnival</a>, <a href="https://www.eaglewingscinematics.com.sg/" target="_blank" rel="noopener noreferrer">EagleWings</a>, or <a href="https://filmhouse.sg/#/" target="_blank" rel="noopener noreferrer">Filmhouse</a> cinema near you.      </div>
+        More ways to watch: Find a <a href="https://carnivalcinemas.sg/#/" target="_blank" rel="noopener noreferrer">Carnival</a>, <a href="https://www.eaglewingscinematics.com.sg/" target="_blank" rel="noopener noreferrer">EagleWings</a>, or <a href="https://filmhouse.sg/#/" target="_blank" rel="noopener noreferrer">Filmhouse</a> cinema.      </div>
       <div class="footer-end">
         <div class="footer-legal">
           <div class="footer-legal-copyright">
@@ -133,35 +133,5 @@ import { RouterView } from 'vue-router'
   margin-right: 0;
   padding-right: 0;
   border-right: none;
-}
-
-/* Mobile */
-@media (max-width: 833px) {
-  .hero-section {
-    flex-direction: column;
-    gap: 12px;
-  }
-  .hero-logos {
-    height: 34px;
-  }
-  .footer-end {
-    flex-direction: column-reverse;
-    align-items: flex-start;
-  }
-  .footer-locale { margin-bottom: 11px; }
-  .footer-legal {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .footer-legal-copyright {
-    margin-right: 0;
-    margin-bottom: 8px;
-  }
-  .footer-legal-links li {
-    margin-bottom: 6px;
-    border-right: none;
-    padding-right: 0;
-    width: 100%;
-  }
 }
 </style>
