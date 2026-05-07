@@ -1,0 +1,76 @@
+{
+  "success": true,
+  "errorMessage": null,
+  "data": {
+    "filmCd": "7450",
+    "filmTitle": "Gohan Charity Screening And Adoptiondrive For Sosd*",
+    "languageCd": "Thai",
+    "rating": "PG13",
+    "consumerAdvice": "Some Coarse Language",
+    "priorityBkgFlg": false,
+    "subTitles": [
+      "English",
+      "Chinese"
+    ],
+    "locations": [
+      {
+        "id": "051",
+        "name": "GVmax, VivoCity",
+        "status": 1,
+        "statusMessage": null,
+        "dates": [
+          {
+            "date": 1778256000000,
+            "concessionAllow": false,
+            "times": [
+              {
+                "midnightDate": 1778256000000,
+                "midnight": false,
+                "showDate": 1778256000000,
+                "time12": "11:00AM",
+                "time24": "1100",
+                "soldPercent": 0.1,
+                "hallNumber": "1",
+                "concessionAllow": false,
+                "advanceSales": false,
+                "increasedCapacity": {
+                  "increasedCapacity": false,
+                  "promptMessage": ""
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "05",
+        "name": "GV VivoCity",
+        "status": 1,
+        "statusMessage": null,
+        "dates": [
+          {
+            "date": 1778256000000,
+            "concessionAllow": false,
+            "times": [
+              {
+                "midnightDate": 1778256000000,
+                "midnight": false,
+                "showDate": 1778256000000,
+                "time12": "11:00AM",
+                "time24": "1100",
+                "soldPercent": 0.1,
+                "hallNumber": "1",
+                "concessionAllow": false,
+                "advanceSales": false,
+                "increasedCapacity": {
+                  "increasedCapacity": false,
+                  "promptMessage": ""
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

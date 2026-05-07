@@ -1,0 +1,10 @@
+[
+    {
+      "cinemaName": "GV VivoCity",
+      "movieTitle": "Example Movie",
+      "date": "2026-05-07",
+      "timeRaw": "7:30 PM",
+      "format": "Standard",
+      "bookingUrl": "https://www.gv.com.sg/GVMovies"
+    }
+  ]
