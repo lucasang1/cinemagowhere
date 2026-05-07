@@ -260,18 +260,32 @@ const getParentCinema = (rawName, chain) => {
 };
 
 const parseTimeToEpoch = (dateStr, timeStr) => {
-  const cleaned = timeStr.replace(/\s+/g, '').toUpperCase();
-  const match = cleaned.match(/(\d+):(\d+)(AM|PM)/);
-  if (!match) return new Date(dateStr).getTime();
+  let hours = 0, mins = 0;
+  const cleaned = timeStr.toString().replace(/\s+/g, '').toUpperCase();
+  
+  const match12 = cleaned.match(/(\d{1,2}):(\d{2})(AM|PM)/);
+  const match24 = cleaned.match(/(\d{1,2}):(\d{2})$/);
+  const matchRaw24 = cleaned.match(/^(\d{2})(\d{2})$/);
 
-  let [_, hours, mins, period] = match;
-  hours = parseInt(hours);
-  if (period === 'PM' && hours !== 12) hours += 12;
-  if (period === 'AM' && hours === 12) hours = 0;
+  if (match12) {
+    hours = parseInt(match12[1]);
+    mins = parseInt(match12[2]);
+    if (match12[3] === 'PM' && hours !== 12) hours += 12;
+    if (match12[3] === 'AM' && hours === 12) hours = 0;
+  } else if (match24) {
+    hours = parseInt(match24[1]);
+    mins = parseInt(match24[2]);
+  } else if (matchRaw24) {
+    hours = parseInt(matchRaw24[1]);
+    mins = parseInt(matchRaw24[2]);
+  } else {
+     return new Date(`${dateStr}T00:00:00+08:00`).getTime();
+  }
 
-  const d = new Date(`${dateStr}T00:00:00+08:00`);
-  d.setHours(hours, parseInt(mins), 0, 0);
-  return d.getTime();
+  const pad = (n) => n.toString().padStart(2, '0');
+  const isoString = `${dateStr}T${pad(hours)}:${pad(mins)}:00+08:00`;
+  
+  return new Date(isoString).getTime();
 };
 
 (async () => {

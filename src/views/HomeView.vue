@@ -184,6 +184,26 @@
   
     mounted() {
       this.getUserLocation();
+      
+      // TEMPORARY SANITY CHECK
+      const testMovie = mockSessions.find(s => s.movieTitle.toLowerCase().includes("mortal kombat"));
+      
+      if (testMovie) {
+        const readableTime = new Date(testMovie.time).toLocaleTimeString('en-SG', {
+          hour: 'numeric',
+          minute: '2-digit',
+          hour12: true
+        });
+
+        console.log("🔴 --- RAW VUE DATA CHECK --- 🔴");
+        console.log("Movie Title :", testMovie.movieTitle);
+        console.log("Stored Date :", testMovie.date);
+        console.log("Stored Time :", readableTime, `(Epoch: ${testMovie.time})`);
+        console.log("Booking URL :", testMovie.bookingUrl);
+        console.log("---------------------------------");
+      } else {
+        console.log("🔴 DATA CHECK: Movie not found in mockData.js");
+      }
     },
   
     methods: {
