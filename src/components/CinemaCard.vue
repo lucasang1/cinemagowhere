@@ -28,7 +28,7 @@
   
           <div class="showtimes-grid">
             <a
-              v-for="session in movieGroup.sessions"
+              v-for="(session, index) in movieGroup.sessions"
               :key="session.bookingUrl + index"
               :href="session.bookingUrl"
               target="_blank"
