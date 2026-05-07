@@ -36,8 +36,9 @@
     },
   
     data() {
+      const cachedLocation = localStorage.getItem('cgw_location');
       return {
-        userLocation: null,
+        userLocation: cachedLocation ? JSON.parse(cachedLocation) : null,
         selectedDate: this.getDateValue(0),
         selectedCinema: 'all',
         selectedMovie: 'all',
@@ -260,16 +261,19 @@
   
       getUserLocation() {
         if (!navigator.geolocation) return;
-  
+    
         navigator.geolocation.getCurrentPosition(
           (position) => {
-            this.userLocation = {
+            const newLocation = {
               lat: position.coords.latitude,
               lng: position.coords.longitude,
             };
+            
+            this.userLocation = newLocation;
+            
+            localStorage.setItem('cgw_location', JSON.stringify(newLocation));
           },
           () => {
-            this.userLocation = null;
           },
           {
             enableHighAccuracy: true,
@@ -278,7 +282,7 @@
           }
         );
       },
-  
+        
       calculateDistance(lat1, lng1, lat2, lng2) {
         const earthRadius = 6371;
   
