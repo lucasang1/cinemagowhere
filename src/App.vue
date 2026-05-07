@@ -6,6 +6,7 @@ import { RouterView } from 'vue-router'
   <div class="app-layout">
     <header class="hero-section">
       <div class="hero-text">
+        <img src="@/assets/mm.png" alt="mm" />
         <h1>CinemaGoWhere?</h1>
       </div>
       <div class="hero-logos">
@@ -62,7 +63,8 @@ import { RouterView } from 'vue-router'
 }
 .hero-text {
   display: flex;
-  flex-direction: column;
+  gap:1px;
+  height: clamp(34px, 6vw, 56px);
 }
 .hero-text h1, .hero-text .subtitle {
   margin: 0;
