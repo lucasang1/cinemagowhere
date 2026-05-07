@@ -56,12 +56,20 @@
   
   const groupedSessions = computed(() => {
     const map = new Map();
+    
+    // Calculate the cutoff time: Current time minus 15 minutes (in milliseconds)
+    const cutoffTime = Date.now() - (15 * 60 * 1000);
   
     props.cinemaData.sessions.forEach((session) => {
+      // Skip this session entirely if it started more than 15 mins ago
+      if (session.time < cutoffTime) {
+        return;
+      }
+  
       if (!map.has(session.movieTitle)) {
         map.set(session.movieTitle, {
           movieTitle: session.movieTitle,
-          // Extract rating and posterUrl from the first session of this movie
+          // Extract rating and posterUrl from the first valid session
           rating: session.rating,
           posterUrl: session.posterUrl,
           sessions: [],
@@ -93,7 +101,6 @@
   </script>
   
   <style scoped>
-  /* 1. Header Layout Alignment */
   .movie-row-header {
     display: flex;
     justify-content: space-between; /* Pushes pill to the absolute right */
