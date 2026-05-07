@@ -99,23 +99,22 @@
     });
   };
   </script>
-  
+
   <style scoped>
   .movie-row-header {
     display: flex;
-    justify-content: space-between; /* Pushes pill to the absolute right */
+    justify-content: space-between; 
     align-items: flex-start;
     margin-bottom: 12px;
   }
   
   .movie-title {
     margin: 0;
-    padding-right: 16px; /* Prevents long titles from touching the pill */
+    padding-right: 16px; 
   }
   
-  /* 2. The Rating Pill */
   .rating-pill {
-    flex-shrink: 0; /* Prevents the pill from squishing on long titles */
+    flex-shrink: 0; 
     font-size: 0.75rem;
     font-weight: 600;
     color: #64748b;
@@ -125,12 +124,11 @@
     line-height: 1.2;
   }
     
-  /* 4. The 3D Pop-Out Poster Trick */
     .movie-showtime-group::after {
     content: "";
     position: absolute;
     top: 50%;
-    left: -150px; /* Starts tucked inside */
+    left: -150px; 
     width: 130px; 
     height: 190px;
     background-image: var(--poster-bg);
@@ -140,7 +138,7 @@
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-50%) scale(0.9) rotate(0deg); /* 90% zoom default */
+    transform: translateY(-50%) scale(0.9) rotate(0deg);
     transform-origin: center right;
     transition: all 0.2s ease;
     z-index: 100;
@@ -150,7 +148,7 @@
     .movie-showtime-group:hover::after {
     opacity: 1;
     visibility: visible;
-    left: -150px; /* Slides out completely to the left */
-    transform: translateY(-50%) scale(1) rotate(0deg); /* 100% zoom */
+    left: -150px; 
+    transform: translateY(-50%) scale(1) rotate(0deg); 
     }
   </style>
