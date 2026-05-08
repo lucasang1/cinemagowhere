@@ -322,13 +322,11 @@ h1 {
     flex-direction: row; 
     align-items: center;
     justify-content: center;
-    gap: 1px;
+    gap: 0;
   }
 
   .hero-text img {
-    height: 100%;
-    max-height: 38px;
-    width: auto;
+    display: none;
   }
 
   .hero-text h1 {
