@@ -1,12 +1,21 @@
 <template>
-    <main class="home-view">
-      <FilterControls
-        :dates="dateOptions"
-        :cinemas="availableCinemas"
-        :movies="availableMovies"
-        @filter-change="handleFilterChange"
-      />
-  
+  <main class="home-view">
+    <FilterControls
+      :dates="dateOptions"
+      :cinemas="availableCinemas"
+      :movies="availableMovies"
+      @filter-change="handleFilterChange"
+    />
+
+    <button
+      v-if="!hasSearched"
+      class="mobile-search-btn"
+      @click="hasSearched = true"
+    >
+      Find Movies
+    </button>
+
+    <div class="results-container" :class="{ 'is-searched': hasSearched }">
       <section v-if="groupedCinemaData.length" class="cinema-list">
         <CinemaCard
           v-for="cinema in groupedCinemaData"
@@ -14,13 +23,14 @@
           :cinema-data="cinema"
         />
       </section>
-  
+
       <section v-else class="empty-state">
         <h2>No showtimes found</h2>
         <p>Try another date, cinema, or movie.</p>
       </section>
-    </main>
-  </template>
+    </div>
+  </main>
+</template>
   
 <script>
 import CinemaCard from '@/components/CinemaCard.vue';
@@ -42,11 +52,11 @@ export default {
       selectedDate: this.getDateValue(0),
       selectedCinema: 'all',
       selectedMovie: 'all',
+      hasSearched: false, 
     };
   },
 
   computed: {
-    // 1. DATA PIPELINE: Unify all titles across the entire app
     normalizedSessions() {
       const slugMap = new Map();
 
@@ -124,20 +134,17 @@ export default {
         });
     },
 
-    // 2. Base Dates
     sessionsForSelectedDate() {
       return this.normalizedSessions.filter(
         (session) => this.getSessionDateValue(session) === this.selectedDate
       );
     },
 
-    // 3. Base for Filters (Removes past shows so dropdowns are accurate)
     upcomingSessionsForSelectedDate() {
       const cutoffTime = Date.now() - 15 * 60 * 1000;
       return this.sessionsForSelectedDate.filter((session) => session.time > cutoffTime);
     },
 
-    // 4. Filtered Sessions (Apply the dropdown selections)
     filteredSessions() {
       return this.upcomingSessionsForSelectedDate.filter((session) => {
         const matchesCinema = this.selectedCinema === 'all' || session.cinemaId === this.selectedCinema;
@@ -164,7 +171,6 @@ export default {
       return Array.from(movieSet).sort((a, b) => a.localeCompare(b));
     },
 
-    // 5. Grouping the UI cards
     groupedCinemaData() {
       const cinemaMap = new Map();
 
@@ -223,7 +229,6 @@ export default {
 
       this.selectedDate = nextDate;
       
-      // Wait for Vue's computed properties to update based on the new date
       this.$nextTick(() => {
         this.selectedCinema = nextCinema;
         this.selectedMovie = nextMovie;
