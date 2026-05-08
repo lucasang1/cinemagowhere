@@ -138,7 +138,7 @@ async function scrapeGV() {
                    timeRaw: time.time12,
                    format: detectFormat(location.name),
                    rating: details.rating || 'TBA',
-                   posterUrl: movie.poster || movie.posterUrl || movie.thumbUrl || '',
+                   posterUrl: `https://media.gv.com.sg/imagesresize/img${details.filmCd}.jpg`,
                    sessionId: `${location.id}-${details.filmCd}-${time.showDate}-${time.time24}`,
                    bookingUrl: `https://www.gv.com.sg/GVSeatSelection#/cinemaId/${location.id}/filmCode/${details.filmCd}/showDate/${formatGvCheckoutDate(time.showDate)}/showTime/${time.time24}/hallNumber/${time.hallNumber}`
                 });

@@ -16,22 +16,22 @@
 
     <div class="movie-showtime-groups">
       <section
-        v-for="movieGroup in groupedSessions"
-        :key="movieGroup.movieTitle"
+        v-for="movie in cinemaData.movies" 
+        :key="movie.movieTitle"
         class="movie-showtime-group"
-        :style="{ '--poster-bg': `url(${movieGroup.posterUrl})` }"
+        :style="{ '--poster-bg': `url(${movie.posterUrl})` }"
       >
         <div class="movie-row-header">
-          <h3 class="movie-title">{{ movieGroup.movieTitle }}</h3>
-          <span v-if="movieGroup.rating" class="rating-pill">{{ movieGroup.rating }}</span>
+          <h3 class="movie-title">{{ movie.movieTitle }}</h3>
+          <span v-if="movie.rating" class="rating-pill">{{ movie.rating }}</span>
         </div>
 
         <div class="showtimes-grid">
           <a
-            v-for="session in movieGroup.sessions"
-            :key="session.bookingUrl"  :href="session.bookingUrl"
+            v-for="session in movie.sessions"
+            :key="session.bookingUrl"
+            :href="session.bookingUrl"
             target="_blank"
-            rel="noopener noreferrer"
             class="showtime-slot"
           >
             <span class="time-label">{{ formatTime(session.time) }}</span>
