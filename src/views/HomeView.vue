@@ -1,5 +1,5 @@
 <template>
-  <main class="home-view">
+  <main class="home-view" :data-searched="hasSearched.toString()">
     <FilterControls
       :dates="dateOptions"
       :cinemas="availableCinemas"
@@ -12,7 +12,7 @@
       class="mobile-search-btn"
       @click="hasSearched = true"
     >
-      Find Movies
+      <img src="@/assets/mm.png" alt="Search" />
     </button>
 
     <div class="results-container" :class="{ 'is-searched': hasSearched }">
