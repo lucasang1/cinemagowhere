@@ -113,8 +113,8 @@ const formatTime = (timestamp) => {
   flex-shrink: 0; 
   font-size: 0.75rem;
   font-weight: 600;
-  color: #64748b;
-  background-color: #f1f5f9;
+  color: var(--muted);
+  background-color: var(--soft);
   padding: 4px 8px;
   border-radius: 12px;
   line-height: 1.2;
