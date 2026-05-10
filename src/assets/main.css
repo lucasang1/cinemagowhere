@@ -338,6 +338,7 @@ h1 {
   .hero-logos {
     height: 38px;
     justify-content: center;
+    order: -1;
   }
 
   .filter-group {
