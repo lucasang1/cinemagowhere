@@ -347,6 +347,15 @@ h1 {
     padding: 16px;
   }
 
+  .filter-group {
+    position: relative; 
+    top: auto;         
+    z-index: 1;        
+    grid-template-columns: 1fr !important;
+    gap: 12px;
+    padding: 16px;
+  }
+
   .movie-showtime-group::after {
     display: none !important;
   }
