@@ -7,7 +7,7 @@ import { RouterView } from 'vue-router'
     <header class="hero-section">
       <div class="hero-text">
         <img src="@/assets/mm.png" alt="mm" />
-        <h1>Cinematix</h1>
+        <h1>CinemaGoWhere?</h1>
       </div>
       <div class="hero-logos">
         <img src="@/assets/gv-logo.png" alt="GV" />
@@ -23,7 +23,7 @@ import { RouterView } from 'vue-router'
       <div class="footer-end">
         <div class="footer-legal">
           <div class="footer-legal-copyright">
-            Copyright © 2026 Cinematix. All rights reserved.
+            Copyright © 2026 CinemaGoWhere?. All rights reserved.
           </div>
           <ul class="footer-legal-links" role="list">
             <li role="listitem"><router-link to="/privacy">Privacy Policy</router-link></li>
