@@ -42,7 +42,7 @@ import { RouterView } from 'vue-router'
 .app-layout {
   max-width: 1120px;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 30px 20px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
