@@ -198,6 +198,11 @@ h1 {
   z-index: 50;
 }
 
+.movie-showtime-group:last-child {
+  border-bottom-left-radius: 26px;
+  border-bottom-right-radius: 26px;
+}
+
 .movie-row-header {
   display: flex;
   align-items: flex-start;
@@ -339,12 +344,6 @@ h1 {
     height: 38px;
     justify-content: center;
     order: -1;
-  }
-
-  .filter-group {
-    grid-template-columns: 1fr !important;
-    gap: 12px;
-    padding: 16px;
   }
 
   .filter-group {
