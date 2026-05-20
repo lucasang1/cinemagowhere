@@ -233,7 +233,7 @@ const closeTicket = () => {
 }
 
 .ticket-poster {
-  height: 200px;
+  height: 500px;
   background-size: cover;
   background-position: top center;
   position: relative;
