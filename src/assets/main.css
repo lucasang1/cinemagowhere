@@ -308,6 +308,15 @@ h1 {
 }
 
 @media (max-width: 760px) {
+
+  .home-view {
+    padding: 0 0 0;
+  }
+
+  .app-layout:has(.home-view[data-searched="true"]) {
+    padding: 0 0;
+  }
+
   .app-layout:has(.home-view[data-searched="false"]) {
     justify-content: center;
   }
