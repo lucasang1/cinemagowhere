@@ -15,7 +15,13 @@ import { RouterView } from 'vue-router'
       </div>
     </header>
     
-    <RouterView />
+    <router-view v-slot="{ Component }">
+      <transition name="page" mode="out-in">
+        <keep-alive>
+          <component :is="Component" />
+        </keep-alive>
+      </transition>
+    </router-view>
 
     <footer class="footer">
       <div class="footer-shop">
@@ -133,5 +139,20 @@ import { RouterView } from 'vue-router'
   margin-right: 0;
   padding-right: 0;
   border-right: none;
+}
+
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.25s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.page-enter-from {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.page-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
 }
 </style>

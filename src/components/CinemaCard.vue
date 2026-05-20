@@ -3,9 +3,11 @@
     <header class="cinema-header">
       <div>
         <h2 class="cinema-name">
-          <span v-if="cinemaData.cinemaName.startsWith('Shaw Theatres')" class="cinema-prefix">Shaw Theatres</span>
-          <span v-else-if="cinemaData.cinemaName.startsWith('GV')" class="cinema-prefix">GV</span>
-          {{ cinemaData.cinemaName.replace(/^Shaw Theatres\s*/, '').replace(/^GV\s*/, '') }}
+          <router-link :to="`/cinema/${slugify(cinemaData.cinemaId)}`" class="seo-link">
+            <span v-if="cinemaData.cinemaName.startsWith('Shaw Theatres')" class="cinema-prefix">Shaw Theatres</span>
+            <span v-else-if="cinemaData.cinemaName.startsWith('GV')" class="cinema-prefix">GV</span>
+            {{ cinemaData.cinemaName.replace(/^Shaw Theatres\s*/, '').replace(/^GV\s*/, '') }}
+          </router-link>
         </h2>
       </div>
 
@@ -22,7 +24,11 @@
         :style="{ '--poster-bg': `url(${movie.posterUrl})` }"
       >
         <div class="movie-row-header">
-          <h3 class="movie-title">{{ movie.movieTitle }}</h3>
+          <h3 class="movie-title">
+            <router-link :to="`/movie/${slugify(movie.movieTitle)}`" class="seo-link">
+              {{ movie.movieTitle }}
+            </router-link>
+          </h3>
           <span v-if="movie.rating" class="rating-pill">{{ movie.rating }}</span>
         </div>
 
@@ -44,8 +50,6 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
-
 const props = defineProps({
   cinemaData: {
     type: Object,
@@ -53,39 +57,16 @@ const props = defineProps({
   },
 });
 
-const groupedSessions = computed(() => {
-  const map = new Map();
-  
-  const cutoffTime = Date.now() - (15 * 60 * 1000);
-
-  props.cinemaData.sessions.forEach((session) => {
-    if (session.time < cutoffTime) {
-      return;
-    }
-
-    if (!map.has(session.movieTitle)) {
-      map.set(session.movieTitle, {
-        movieTitle: session.movieTitle,
-        rating: session.rating,
-        posterUrl: session.posterUrl,
-        sessions: [],
-      });
-    }
-
-    map.get(session.movieTitle).sessions.push(session);
-  });
-
-  return Array.from(map.values())
-    .map((group) => ({
-      ...group,
-      sessions: group.sessions.sort((a, b) => a.time - b.time),
-    }))
-    .sort((a, b) => {
-      const firstTimeA = a.sessions[0]?.time || 0;
-      const firstTimeB = b.sessions[0]?.time || 0;
-      return firstTimeA - firstTimeB;
-    });
-});
+const slugify = (text) => {
+  return text
+    .toString()
+    .toLowerCase()
+    .replace(/\s+/g, '-')           
+    .replace(/[^\w\-]+/g, '')       
+    .replace(/\-\-+/g, '-')         
+    .replace(/^-+/, '')             
+    .replace(/-+$/, '');            
+};
 
 const formatTime = (timestamp) => {
   return new Date(timestamp).toLocaleTimeString('en-SG', {
@@ -97,6 +78,15 @@ const formatTime = (timestamp) => {
 </script>
 
 <style scoped>
+.seo-link {
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.seo-link:hover {
+  text-decoration: underline;
+}
+
 .movie-row-header {
   display: flex;
   justify-content: space-between; 

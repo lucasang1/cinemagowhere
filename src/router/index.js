@@ -20,8 +20,25 @@ const router = createRouter({
       path: '/terms',
       name: 'terms',
       component: TermsView
+    },
+    {
+      path: '/cinema/:id',
+      name: 'cinema',
+      component: () => import('../views/CinemaView.vue')
+    },
+    {
+      path: '/movie/:id',
+      name: 'movie',
+      component: () => import('../views/MovieView.vue')
     }
-  ]
+  ],
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return { top: 0 } 
+    }
+  }
 })
 
 export default router
