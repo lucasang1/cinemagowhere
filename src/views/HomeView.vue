@@ -1,5 +1,11 @@
 <template>
-  <main class="home-view" :data-searched="hasSearched.toString()">
+  <main class="home-view" :data-searched="hasSearched ? 'true' : 'false'">
+    
+    <div class="splash-header">
+      <img src="@/assets/mm.png" alt="mm" />
+      <h1>CinemaGoWhere?</h1>
+    </div>
+
     <FilterControls
       :dates="dateOptions"
       :cinemas="availableCinemas"
@@ -7,15 +13,11 @@
       @filter-change="handleFilterChange"
     />
 
-    <button
-      v-if="!hasSearched"
-      class="mobile-search-btn"
-      @click="hasSearched = true"
-    >
+    <button class="splash-search-btn" @click="hasSearched = true">
       <img src="@/assets/mm.png" alt="Search" />
     </button>
 
-    <div class="results-container" :class="{ 'is-searched': hasSearched }">
+    <div class="results-container">
       <section v-if="groupedCinemaData.length" class="cinema-list">
         <CinemaCard
           v-for="cinema in groupedCinemaData"
@@ -23,12 +25,12 @@
           :cinema-data="cinema"
         />
       </section>
-
       <section v-else class="empty-state">
         <h2>No showtimes found</h2>
         <p>Try another date, cinema, or movie.</p>
       </section>
     </div>
+
   </main>
 </template>
   
@@ -48,11 +50,11 @@ export default {
   data() {
     const cachedLocation = localStorage.getItem('cgw_location');
     return {
+      hasSearched: false,
       userLocation: cachedLocation ? JSON.parse(cachedLocation) : null,
       selectedDate: this.getDateValue(0),
       selectedCinema: 'all',
       selectedMovie: 'all',
-      hasSearched: false, 
     };
   },
 
